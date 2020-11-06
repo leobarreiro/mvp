@@ -1,0 +1,32 @@
+
+Topico 1 - Microfrontend essentials
+	Conceitos
+	Arquitetura
+	Comunicação independente entre componentes
+	Segurança
+	
+Topico 2 - Arquitetura Multiplica MFE	
+	Apresentar a arquitetura Multiplica MFE
+	Explicar sobre cada um dos componentes
+
+Topico 3 - single-spa
+	Apresentação do framework
+	Exemplos práticos
+		single-spa router-config
+		single-spa --framework react
+		configurações para ligar router-config e mfe
+	Hands on
+
+Topico 4 - Comunicação com backends
+	*Backend do frontend
+	*Backend do backend 
+	Kubernetes Cluster
+	Services, Deployments, Pods
+	Comunicação entre partes
+
+
+Related - Minikube / Kind / Docker na estação de trabalho
+	Vantagens
+	Ferramentas
+	Facilidades
+

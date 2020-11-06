@@ -1,0 +1,20 @@
+Instalar
+
+node
+npm
+yarn
+npm single-spa
+npm yo
+npm generator-single-spa
+
+sudo npm install -g single-spa
+
+
+# Criar um single-spa tipo root-config
+yarn create single-spa --module-type root-config
+
+# Criar um microfrontend
+yarn create single-spa --framework react
+
+# registrar o mfe no root-config
+
