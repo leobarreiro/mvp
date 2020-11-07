@@ -4,7 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Root Config</title>
+  <title>Grupo Multiplica - Microfrontends</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/img/favicon-32x32.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+  <link rel="stylesheet" href="public/css/multiplica.css">
   <script src="https://cdn.jsdelivr.net/npm/regenerator-runtime@0.13.5/runtime.min.js"></script>
   <!-- https://content-security-policy.com/#directive -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https:; object-src 'none';">
@@ -38,9 +42,10 @@
     {
       "imports": {
         "@single-spa/welcome": "https://unpkg.com/single-spa-welcome/dist/single-spa-welcome.js",
-        "@multiplica/root-config": "//localhost:9000/multiplica-root-config.js", 
-        "@multiplica/mfe1": "//localhost:8080/multiplica-mfe1.js", 
-        "@multiplica/logo": "//localhost:8009/multiplica-logo.js" 
+        "@multiplica/root-config": "//localhost:9001/multiplica-root-config.js", 
+        "@multiplica/logo": "//localhost:9002/multiplica-logo.js", 
+        "@multiplica/mfe1": "//localhost:9003/multiplica-mfe1.js", 
+        "@multiplica/rodape": "//localhost:9004/multiplica-rodape.js" 
       }
     }
   </script>
@@ -63,25 +68,28 @@
   <script src="https://cdn.jsdelivr.net/npm/systemjs@6.4.0/dist/extras/amd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/systemjs@6.4.0/dist/extras/named-exports.min.js"></script>
   <% } %>
-</head>
-<body>
+  
   <template id="single-spa-layout">
     <single-spa-router>
-      <div style="background-color: aquamarine;">
-        <application name="@multiplica/logo"></application>
-      </div>
       <nav>
-        <application name="@multiplica/mfe1"></application>
+        <application name="@multiplica/logo"></application>
       </nav>
       <main>
         <route default>
-          <application name="@single-spa/welcome"></application>
+          <application name="@multiplica/mfe1"></application>
+        </route>
+        <route path="welcome">
+          <h1>404 Not Found</h1>
         </route>
       </main>
+      <footer>
+          <application name="@multiplica/rodape"></application>
+      </footer>
     </single-spa-router>
   </template>
-
-  <script>
+</head>
+<body>
+   <script>
     System.import('@multiplica/root-config');
   </script>
   <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>

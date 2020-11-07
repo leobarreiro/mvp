@@ -1,7 +1,7 @@
 {
   "name": "@multiplica/root-config",
   "scripts": {
-    "start": "webpack-dev-server --mode=development --port 9000 --env.isLocal=true",
+    "start": "webpack-dev-server --mode=development --env.isLocal=true",
     "lint": "eslint src --ext js",
     "test": "cross-env BABEL_ENV=test jest --passWithNoTests",
     "format": "prettier --write \"./**\"",
@@ -40,6 +40,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "bootstrap": "^4.5.3",
     "single-spa": "^5.3.1",
     "single-spa-layout": "1.1.5"
   }
