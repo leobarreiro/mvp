@@ -96,6 +96,18 @@ registerApplication({
 
 # Auxílios e ferramentas adicionais
 
+### import-map-overrides
+
+Um dos recursos disponíveis para implementação de mfe no single-spa é a lib import-map-overrides. O uso desta ferramenta permite adicionar, remover e sobrescrever mfe dentro da aplicação principal, direto no browser e em tempo de depuração. Para habilitar o import-map-overrides, abra o console do browser e digite o comando abaixo:
+
+```
+localStorage.setItem("devtools", true)
+```
+
+Com um _enter_ esse comando é executado no console. A partir daí aparece na tela principal um botão que habilita o import-map-overrides, permitindo que o desenvolvedor realize suas personalizações de componentes.
+
+### Comandos úteis
+
 Listar processos node e portas escutando na sua estação de trabalho
 
 ```
