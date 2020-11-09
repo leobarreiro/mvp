@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-multiplica
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+    - host: mfe.quasarbot.com
+      http:
+        paths:
+          - path: /spa
+            backend:
+              serviceName: mfe-spa
+              servicePort: 80
+          - path: /logo
+            backend:
+              serviceName: mfe-logo
+              servicePort: 80
+          - path: /mfe1
+            backend:
+              serviceName: mfe-mfe1
+              servicePort: 80
+          - path: /rodape
+            backend:
+              serviceName: mfe-rodape
+              servicePort: 80

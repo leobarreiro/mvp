@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mfe-logo
+spec:
+  selector:
+    matchLabels:
+      app: mfe-logo
+  template:
+    metadata:
+      labels:
+        app: mfe-logo
+    spec:
+      containers:
+        - name: mfe-logo
+          image: lbbarreiro/mfe-logo:0.2.0
+          ports:
+            - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mfe-rodape
+spec:
+  selector:
+    matchLabels:
+      app: mfe-rodape
+  template:
+    metadata:
+      labels:
+        app: mfe-rodape
+    spec:
+      containers:
+        - name: mfe-rodape
+          image: lbbarreiro/mfe-rodape:0.2.0
+          ports:
+            - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mfe-mfe1
+spec:
+  selector:
+    matchLabels:
+      app: mfe-mfe1
+  template:
+    metadata:
+      labels:
+        app: mfe-mfe1
+    spec:
+      containers:
+        - name: mfe-mfe1
+          image: lbbarreiro/mfe-mfe1:0.2.0
+          ports:
+            - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mfe-spa
+spec:
+  selector:
+    matchLabels:
+      app: mfe-spa
+  template:
+    metadata:
+      labels:
+        app: mfe-spa
+    spec:
+      containers:
+        - name: mfe-spa
+          image: lbbarreiro/mfe-spa:0.2.3
+          ports:
+            - containerPort: 80
