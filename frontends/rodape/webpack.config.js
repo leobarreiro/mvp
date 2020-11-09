@@ -7,6 +7,9 @@ module.exports = (webpackConfigEnv, argv) => {
     projectName: "rodape",
     webpackConfigEnv,
     argv,
+    devServer: {
+      disableHostCheck: true,
+    },
   });
 
   return webpackMerge.smart(defaultConfig, {
