@@ -8,12 +8,11 @@
 - [node 14+](http://nodejs.org)
 - npm (junto com o node na instalação padrão)
 - [yarn](https://classic.yarnpkg.com/lang/en/)
+- npm install -g yo@latest
 
 ## Para desenvolvedores frontend
 
 - Editor [VSCode](https://code.visualstudio.com/download)
-- npm install -g yo@latest
-- npm install -g generator-single-spa@latest
 - npm install -g single-spa@latest
 
 ## Para desenvolvedores backend
