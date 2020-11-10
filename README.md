@@ -10,6 +10,9 @@
 - [yarn](https://classic.yarnpkg.com/lang/en/)
 - npm install -g yo@latest
 
+### Aconselhável também
+- [dbeaver](https://dbeaver.io/download/) - browser desktop para diversos tipos de bancos de dados.
+
 ## Para desenvolvedores frontend
 
 - Editor [VSCode](https://code.visualstudio.com/download)
