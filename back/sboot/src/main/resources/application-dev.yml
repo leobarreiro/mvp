@@ -1,0 +1,71 @@
+logging:
+  level:
+    br.com.grupomultiplica.backend.api: DEBUG
+    org.springframework.boot.context: DEBUG
+server:
+  compression:
+    enabled: true
+  port: 8080
+  servlet: 
+    context-path: /sboot
+springfox:
+  documentation:
+    swagger.v2.path: /v2/api-docs
+    info:
+      title: 
+      description: sboot API Docs.
+      version: 1.0
+    base-package: br.com.grupomultiplica.backend.api
+spring:
+  messages:
+    basename: i18n/messages
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: sboot
+      username: sboot
+      password: Organa9857
+  datasource:
+    platform: postgresql
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: Organa9857
+    continue-on-error: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: POSTGRESQL
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  cloud:
+    stream:
+      defaultBinder: business
+      binders:
+        business:
+          type: kafka
+          environment:
+            spring:
+              cloud:
+                stream:
+                  kafka:
+                    binder:
+                      autoAddPartitions: true
+                      brokers: 127.0.0.1:9092
+                      zkNodes: 127.0.0.1:2181
+      bindings:
+        sboot_output:
+          destination: sboot-output
+          contentType: application/json
+          producer:
+            headerMode: raw
+        sboot_input:
+          destination: sboot-input
+          contentType: application/json
+          consumer:
+            maxAttempts: 3
+            headerMode: raw

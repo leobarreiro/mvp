@@ -1,0 +1,32 @@
+# Hello
+curl -X GET http://localhost:8080/sboot/hello
+
+# Date-now
+curl -X GET http://localhost:8080/sboot/date-now 
+
+# Kafka
+curl -X POST -H "Content-type: application/json" -d "{\"name\": \"Dorena Anakin Skywalker\", \"surname\": \"Han Solo Micky\"}" http://localhost:8080/sboot/kafka/send 
+
+# Database Save
+curl -X POST http://localhost:8080/sboot/registry/save -d "description=Saving a new one"
+
+# Database Update
+curl -X PUT http://localhost:8080/sboot/registry/update/1 -d "description=Updating a registry"
+
+# Database List all
+curl -X GET http://localhost:8080/sboot/registry/list-all
+
+# Database Delete
+curl -X DELETE http://localhost:8080/sboot/registry/remove/1 
+
+# Mongo - List by Surname
+curl -X GET http://localhost:8080/sboot/person/surname/[surname]
+
+# Mongo - Save a new person
+curl -X POST http://localhost:8080/sboot/person/new -d "{\"name\": \"Dorena Anakin Skywalker\", \"surname\": \"Han Solo Micky\"}"
+
+# Mongo - Update a person
+curl -X PUT http://localhost:8080/sboot/person/update -d "{\"id\": \"[uuid]\", \"name\": \"Dorena Anakin Skywalker\", \"surname\": \"Han Solo Micky\"}"
+
+# Mongo - Delete a person
+curl -X DELETE http://localhost:8080/sboot/person/remove/[id]

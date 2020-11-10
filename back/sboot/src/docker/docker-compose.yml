@@ -1,0 +1,104 @@
+version: "3.7"
+services:
+  app:
+    image: @project.artifactId@:@project.version@
+    ports: 
+      - 8080:8080
+      - 9090:9090
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'
+          memory: 512M
+        reservations:
+          cpus: '1.0'
+          memory: 256M
+      mode: replicated
+      replicas: 1
+    depends_on: 
+      - mongodb
+      - kafka
+      - postgres
+    networks:
+      - frontend
+      - backend
+      - message
+    links: 
+      - mongodb:mongodb
+      - postgres:postgres
+      - kafka:kafka
+  postgres:
+    image: postgres:11.2-alpine
+    ports:
+      - 5432:5432
+    networks:
+      - backend
+    volumes:
+      - postgresdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=Organa9857
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.50'
+          memory: 256M
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+  mongodb:
+    image: bitnami/mongodb:4.1
+    environment:
+      - MONGODB_USERNAME=sboot
+      - MONGODB_PASSWORD=Organa9857
+      - MONGODB_DATABASE=sboot
+    ports: 
+      - 27017:27017
+    networks:
+      - backend
+    volumes:
+      - mongodbdata:/bitnami
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.50'
+          memory: 256M
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+  kafka:
+    image: spotify/kafka
+    environment: 
+      - ADVERTISED_HOST=localhost
+      - ADVERTISED_PORT=9092
+    ports: 
+      - 2181:2181
+      - 9092:9092
+    networks:
+      - message
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.50'
+          memory: 256M
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+networks:
+  frontend:
+  backend:
+  message:
+volumes: 
+  postgresdata: 
+  mongodbdata: 
