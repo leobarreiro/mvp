@@ -11,13 +11,14 @@
 
 ## Para desenvolvedores frontend
 
+- Editor [VSCode](https://code.visualstudio.com/download)
 - npm install -g yo@latest
 - npm install -g generator-single-spa@latest
 - npm install -g single-spa@latest
 
 ## Para desenvolvedores backend
 
-- **java jdk** 11+;
-- maven 3+;
+- [java jdk 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)+
+- [maven 3+](https://maven.apache.org/download.cgi)
 - [Eclipse IDE 2020-09R for Java developers](https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2020-09/R/eclipse-java-2020-09-R-win32-x86_64.zip);
 - npm install -g generator-springboot-api (ferramenta para gerar microserviços em spring-boot).
