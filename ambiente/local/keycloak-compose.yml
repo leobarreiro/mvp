@@ -1,0 +1,62 @@
+version: "3.7"
+services:
+  keycloak:
+    image: jboss/keycloak:11.0.3
+    ports:
+      - 8081:8080
+#    volumes:
+#      - /usr/local/etc/docker/kc/keycloak/themes:/opt/jboss/keycloak/themes
+    environment: 
+      - DB_VENDOR=postgres
+      - DB_ADDR=kc_postgres
+      - DB_PORT=5432
+      - KEYCLOAK_USER=admin 
+      - KEYCLOAK_PASSWORD=admin
+      - DB_DATABASE=keycloak
+      - DB_SCHEMA=public
+      - DB_USER=keycloak
+      - DB_PASSWORD=mvp012345
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.50'
+          memory: 512M
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+    depends_on:
+      - postgres
+    networks:
+      - keycloak
+  postgres:
+    image: postgres:11.2-alpine
+    ports:
+      - 5432:5432
+    networks:
+      - keycloak
+    volumes:
+      - /usr/local/etc/docker/kc/postgres/data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=keycloak
+      - POSTGRES_PASSWORD=mvp012345
+      - POSTGRES_DB=keycloak
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.50'
+          memory: 256M
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+networks: 
+  keycloak:
+volumes:
+  postgresdata:
