@@ -38,8 +38,8 @@ services:
       - 5432:5432
     networks:
       - keycloak
-    volumes:
-      - /usr/local/etc/docker/kc/postgres/data:/var/lib/postgresql/data
+#    volumes:
+#      - /usr/local/etc/docker/kc/postgres/data:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=keycloak
       - POSTGRES_PASSWORD=mvp012345

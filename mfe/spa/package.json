@@ -40,6 +40,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "keycloak-js": "^11.0.3",
     "single-spa": "^5.3.1"
   }
 }
