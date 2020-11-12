@@ -5,7 +5,7 @@ logging:
 server:
   compression:
     enabled: true
-  port: 8080
+  port: 8085
   servlet: 
     context-path: /sboot
 springfox:
@@ -70,3 +70,11 @@ spring:
           consumer:
             maxAttempts: 3
             headerMode: raw
+
+keycloak:
+  realm: mvp
+  auth-server-url: http://kc_keycloak:8081/auth/
+  ssl-required: external
+  resource: springboot-api
+  credentials:
+    secret: 74e6073c-742a-4150-9373-fd1b59609b48

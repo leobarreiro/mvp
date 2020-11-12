@@ -1,7 +1,6 @@
 package br.com.grupomultiplica.backend.api.endpoint;
 
 import java.util.List;
-import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,12 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.grupomultiplica.backend.api.domain.Person;
-
-import br.com.grupomultiplica.backend.api.service.ApiBaseService;
-
-import br.com.grupomultiplica.backend.api.service.RegistryService;
 import br.com.grupomultiplica.backend.api.domain.Registry;
+import br.com.grupomultiplica.backend.api.service.ApiBaseService;
 import br.com.grupomultiplica.backend.api.service.PersonService;
+import br.com.grupomultiplica.backend.api.service.RegistryService;
 
 @RestController
 public class ApiBaseEndpoint {
