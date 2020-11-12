@@ -1,5 +1,7 @@
 import { registerApplication, start } from "single-spa";
 
+const autenticado = false;
+
 registerApplication({
   name: "@single-spa/welcome",
   app: () =>
