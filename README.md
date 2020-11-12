@@ -10,8 +10,10 @@
 - [yarn](https://classic.yarnpkg.com/lang/en/)
 - npm install -g yo@latest
 
-### Aconselhável também
+### Recomendável
 - [dbeaver](https://dbeaver.io/download/) - browser desktop para diversos tipos de bancos de dados.
+- [postman](https://www.postman.com/downloads/) - cliente para rest
+- [robo3t](https://robomongo.org/download) - browser para mongodb
 
 ## Para desenvolvedores frontend
 
