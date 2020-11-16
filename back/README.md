@@ -41,3 +41,50 @@ $ ./stack.sh
 ```
 Após subir a stack, será possível observar os serviços docker rodando:
 ![docker.services](docker.services.png)
+
+## Utilizando o kafka
+
+### Acessar o bash do container do kafka
+Antes de mais nada é necessário localizar o container do kafka dentre os containers em execução. Para a stack usada como exemplo nesta wiki, o container kafka iniciará pelo nome **sboot_kafka**... O nome do container pode ser localizado com o comando abaixo:
+```
+$ docker container ls
+```
+
+Em seguida, entrar no shell do container kafka com o comando:
+```
+$ docker exec -it [nome-container-kafka] bash
+```
+
+### Listar os tópicos existentes
+```
+$ $KAFKA_HOME/bin/kafka-topics.sh --list --zookeeper localhost:2181
+```
+### Criar um tópico novo
+A aplicação springboot cria automaticamente os tópicos no kafka em sua inicialização. Como exercício, o comando dentro do container para criação de tópicos é o seguinte:
+
+```
+$ $KAFKA_HOME/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic [nome-do-topico]
+```
+
+### Criar mensagens para o tópico
+Com o comando abaixo é aberto um input que vai aguardar por mensagens digitadas para enviar ao tópico:
+```
+$KAFKA_HOME/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic [nome-do-topico]
+```
+
+Em seguida, digite o conteúdo de uma mensagem e depois pressione enter.
+```
+{"id": "ononono", "name": "Fulano", "surname": "de Tal"}
+
+```
+Para sair do modo input, pressione Ctrl+C.
+
+### Ler as mensagens do tópico
+O comando abaixo abre um listener que vai ficar "escutando" as mensagens enviadas para um determinado tópico:
+```
+$KAFKA_HOME/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --from-beginning --topic [nome-do-topico]
+```
+
+### Sair do shell do container
+Uma vez utilizado o shell do container, digite "exit" e pressione enter para sair.
+
