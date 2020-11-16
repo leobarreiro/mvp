@@ -2,12 +2,13 @@ logging:
   level:
     br.com.grupomultiplica.backend.api: DEBUG
     org.springframework.boot.context: DEBUG
+    org.keycloak: TRACE
 server:
   compression:
     enabled: true
-  port: 8080
+  port: 8085
   servlet: 
-    context-path: /sboot
+    context-path: /
 springfox:
   documentation:
     swagger.v2.path: /v2/api-docs
@@ -28,7 +29,7 @@ spring:
       password: Organa9857
   datasource:
     platform: postgresql
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5433/postgres
     username: postgres
     password: Organa9857
     continue-on-error: true
@@ -69,3 +70,11 @@ spring:
           consumer:
             maxAttempts: 3
             headerMode: raw
+keycloak:
+  realm: mvp
+  auth-server-url: http://dev.info:8081/auth/
+  ssl-required: external
+  resource: springboot-api
+  credentials:
+    secret: 74e6073c-742a-4150-9373-fd1b59609b48
+
