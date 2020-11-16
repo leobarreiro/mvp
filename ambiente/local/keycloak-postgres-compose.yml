@@ -1,0 +1,28 @@
+version: "3.7"
+services:
+  postgres:
+    image: postgres:11.2-alpine
+    ports:
+      - 5433:5432
+    networks:
+      - keycloak
+    volumes:
+      - /usr/local/etc/docker/mvp/postgres/data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=keycloak
+      - POSTGRES_PASSWORD=mvp012345
+      - POSTGRES_DB=keycloak
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.50'
+          memory: 256M
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+networks: 
+  keycloak:

@@ -1,0 +1,87 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: quasar
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak-mfe
+  namespace: quasar
+  labels:
+    name: keycloak-mfe
+    app: keycloak-mfe
+spec:
+  selector:
+    matchLabels:
+      name: keycloak-mfe
+      app: keycloak-mfe
+  replicas: 1
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        name: keycloak-mfe
+        app: keycloak-mfe
+    spec:
+      containers:
+        - name: keycloak-mfe
+          image: jboss/keycloak:11.0.3
+          imagePullPolicy: "Always"
+          env:
+            - name: DB_VENDOR
+              value: postgres
+            - name: DB_ADDR
+              value: db.quasarbot.com
+            - name: DB_PORT
+              value: "5433"
+            - name: KEYCLOAK_USER
+              value: admin
+            - name: KEYCLOAK_PASSWORD
+              value: admin
+            - name: DB_DATABASE
+              value: keycloak
+            - name: DB_SCHEMA
+              value: public
+            - name: DB_USER
+              value: keycloak
+            - name: DB_PASSWORD
+              value: mvp012345
+          resources:
+            limits:
+              cpu: 1
+              memory: 512Mi
+            requests:
+              cpu: 100m
+              memory: 192Mi
+          ports:
+            - containerPort: 8080
+            - containerPort: 9090 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: keycloak-mfe
+  namespace: quasar
+spec:
+  type: ClusterIP
+  selector:
+    app: keycloak-mfe
+  ports:
+    - port: 8080
+      targetPort: 8080
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: keycloak-mfe-ingress
+  namespace: quasar
+spec:
+  rules:
+    - host: kc.quasarbot.com
+      http:
+        paths:
+          - backend:
+              serviceName: keycloak-mfe
+              servicePort: 8080
